@@ -13,6 +13,7 @@ import com.benny.openlauncher.R;
 import com.benny.openlauncher.fragment.SettingsBaseFragment;
 import com.benny.openlauncher.fragment.SettingsMasterFragment;
 import com.benny.openlauncher.manager.Setup;
+import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.BackupHelper;
 import com.benny.openlauncher.util.Definitions;
 import com.nononsenseapps.filepicker.Utils;
@@ -34,6 +35,14 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
     public void onCreate(Bundle b) {
         // must be applied before setContentView
         super.onCreate(b);
+
+        //check for lock
+        Intent i = getIntent();
+        if (AppSettings.get().isSettingLockActive() && i != null && !i.getBooleanExtra("pw", false)) {
+            finish();
+            return;
+        }
+
         ContextUtils contextUtils = new ContextUtils(this);
         contextUtils.setAppLanguage(_appSettings.getLanguage());
 

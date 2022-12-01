@@ -8,22 +8,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:resizeableActivity="false"
         android:name="com.benny.openlauncher.AppObject"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="false"
         android:launchMode="singleTask"
+        android:requestLegacyExternalStorage="true"
+        android:resizeableActivity="false"
         android:stateNotNeeded="true"
         android:taskAffinity=""
-        android:theme="@style/Home.Light"
-        android:requestLegacyExternalStorage="true">
+        android:theme="@style/Home.Light">
 
         <meta-data
             android:name="android.max_aspect"
@@ -41,19 +42,25 @@
         </activity>
         <activity
             android:name="com.benny.openlauncher.activity.HomeActivity"
+            android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"
             android:taskAffinity=""
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.benny.openlauncher.activity.SettingsActivityLogin"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:label="@string/pref_title__settings"
+            android:theme="@style/NormalActivity.Light" />
         <activity
             android:name="com.benny.openlauncher.activity.AutoFinishActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
@@ -119,8 +126,8 @@
 
         <service
             android:name="com.benny.openlauncher.notifications.NotificationListener"
-            android:label="@string/icon_badge_service_title"
             android:enabled="true"
+            android:label="@string/icon_badge_service_title"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />

@@ -178,6 +178,16 @@
     <string name="pref_title__restart">Restart</string>
     <string name="pref_summary__restart">This can be used to manually apply some settings.</string>
 
+    <string name="pref_master__password_key">password</string>
+    <string name="pref_master__lock_title">Settings lock password</string>
+    <string name="pref_master__lock_dialog_description">Enter the password which will be used for restricting access to the settings</string>
+    <string name="pref_master__lock_remove">Remove password</string>
+    <string name="pref_behaviour__summary_app_info">Allow app info option for apps</string>
+    <string name="pref_behaviour__summary_deinstallation">Allow deinstallation option for all apps</string>
+    <string name="pref_behaviour__title_app_info">Allow app info</string>
+    <string name="pref_behaviour__title_deinstallation">Allow deinstallation</string>
+    <string name="activity_login_password_wrong">The entered password is wrong</string>
+
     <!-- Arrays -->
     <string name="vertical_scroll_drawer">Vertical</string>
     <string name="horizontal_paged_drawer">Paged</string>

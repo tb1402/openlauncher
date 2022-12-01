@@ -3,11 +3,13 @@ package com.benny.openlauncher.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
+import android.widget.Toast;
 
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.activity.HideAppsActivity;
 import com.benny.openlauncher.activity.HomeActivity;
 import com.benny.openlauncher.activity.MoreInfoActivity;
+import com.benny.openlauncher.model.App;
 import com.benny.openlauncher.util.AppSettings;
 
 import net.gsantner.opoc.util.ContextUtils;
@@ -29,6 +31,7 @@ public class SettingsMasterFragment extends SettingsBaseFragment {
         super.onPreferenceTreeClick(preference);
         HomeActivity homeActivity = HomeActivity._launcher;
         int key = new ContextUtils(homeActivity).getResId(ContextUtils.ResType.STRING, preference.getKey());
+        Toast.makeText(getContext(),key+" ",Toast.LENGTH_SHORT).show();
         switch (key) {
             case R.string.pref_key__cat_hide_apps:
                 Intent intent = new Intent(getActivity(), HideAppsActivity.class);
@@ -37,6 +40,10 @@ public class SettingsMasterFragment extends SettingsBaseFragment {
                 return true;
             case R.string.pref_key__cat_about:
                 startActivity(new Intent(getActivity(), MoreInfoActivity.class));
+                return true;
+            case R.string.pref_key__remove_lock:
+                AppSettings.get().removeSettingLock();
+                Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
                 return true;
         }
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="30.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginBottom="30.0dip"
+        android:background="#ffd3d3d3"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="@string/pref_master__lock_title"
+        android:inputType="textPassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#ff000000"
+        android:textSize="36.0sp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@android:style/Widget.Button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50.0dip"
+        android:layout_marginRight="50.0dip"
+        android:text="@android:string/ok"
+        android:textSize="36.0sp" />
+    <!--android:fontFamily="sans-serif-condensed"-->
+    <!--android:textAppearance="@style/TextAppearance.AppCompat.Body2"-->
+
+
+    <TextView
+        android:id="@+id/tv_captcha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

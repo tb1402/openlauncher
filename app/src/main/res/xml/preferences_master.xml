@@ -51,6 +51,17 @@
             android:key="@string/pref_key__cat_hide_apps"
             android:title="@string/pref_title__hide_apps" />
 
+        <EditTextPreference android:icon="@drawable/ic_lock"
+            android:key="@string/pref_master__password_key"
+            android:dialogMessage="@string/pref_master__lock_dialog_description"
+            android:inputType="textPassword"
+            android:title="@string/pref_master__lock_title"/>
+
+        <PreferenceScreen
+            android:icon="@drawable/ic_lock_open"
+            android:key="@string/pref_key__remove_lock"
+            android:title="@string/pref_master__lock_remove"/>
+
         <PreferenceScreen
             android:icon="@drawable/ic_info"
             android:key="@string/pref_key__cat_about"

@@ -17,6 +17,7 @@ import com.benny.openlauncher.R;
 import com.benny.openlauncher.activity.HomeActivity;
 import com.benny.openlauncher.activity.MinibarEditActivity;
 import com.benny.openlauncher.activity.SettingsActivity;
+import com.benny.openlauncher.activity.SettingsActivityLogin;
 import com.benny.openlauncher.viewutil.DialogHelper;
 
 import java.lang.reflect.Method;
@@ -83,7 +84,7 @@ public class LauncherAction {
                 context.startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 break;
             case LauncherSettings:
-                context.startActivity(new Intent(context, SettingsActivity.class));
+                context.startActivity(new Intent(context, AppSettings.get().isSettingLockActive() ? SettingsActivityLogin.class : SettingsActivity.class));
                 break;
             case VolumeDialog:
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {

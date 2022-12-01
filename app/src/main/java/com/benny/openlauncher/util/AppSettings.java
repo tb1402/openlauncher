@@ -98,7 +98,7 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         String line1 = getString(R.string.pref_key__date_bar_date_format_custom_1, rstr(R.string.pref_default__date_bar_date_format_custom_1));
         String line2 = getString(R.string.pref_key__date_bar_date_format_custom_2, rstr(R.string.pref_default__date_bar_date_format_custom_2));
 
-        return DateTimeFormatter.ofPattern(line1 +  "'\n'" + line2);
+        return DateTimeFormatter.ofPattern(line1 + "'\n'" + line2);
     }
 
     public int getDesktopDateMode() {
@@ -274,6 +274,14 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getString(R.string.pref_key__language, "");
     }
 
+    public String getPassword() {
+        return getString(R.string.pref_master__password_key, "");
+    }
+
+    public boolean isSettingLockActive() {
+        return _prefApp.contains(_context.getString(R.string.pref_master__password_key));
+    }
+
     // internal preferences below here
     public boolean getMinibarEnable() {
         return getBool(R.string.pref_key__minibar_enable, true);
@@ -363,5 +371,12 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
     public void setAppFirstLaunch(boolean value) {
         // MUST be committed
         _prefApp.edit().putBoolean(_context.getString(R.string.pref_key__first_start), value).commit();
+    }
+
+    /**
+     * Removes the saved password for opening the settings
+     */
+    public void removeSettingLock() {
+        _prefApp.edit().remove(_context.getString(R.string.pref_master__password_key)).apply();
     }
 }

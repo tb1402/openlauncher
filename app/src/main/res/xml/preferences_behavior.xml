@@ -22,6 +22,21 @@
         android:summary="@string/pref_summary__gesture_quick_swipe"
         android:title="@string/pref_title__gesture_quick_swipe" />
 
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:icon="@drawable/ic_info"
+        android:key="@string/pref_key__allow_app_info"
+        android:summary="@string/pref_behaviour__summary_app_info"
+        android:title="@string/pref_behaviour__title_app_info" />
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:icon="@drawable/ic_delete"
+        android:key="@string/pref_key__allow_deinstallation"
+        android:summary="@string/pref_behaviour__summary_deinstallation"
+        android:title="@string/pref_behaviour__title_deinstallation" />
+
+
     <com.benny.openlauncher.widget.ColorPreferenceCategory android:title="@string/pref_title__gestures">
 
         <Preference

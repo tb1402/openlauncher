@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion version_compileSdk
-    buildToolsVersion version_buildTools
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion version_minSdk
-        targetSdkVersion version_compileSdk
+        minSdkVersion 17
+        targetSdkVersion 29
 
         flavorDimensions "versionCode"
         multiDexEnabled false
@@ -21,7 +21,8 @@ android {
 
         resValue 'string', 'app_name', "OpenLauncher"
 
-        applicationId "com.benny.openlauncher"
+        //applicationId "com.benny.openlauncher"
+        applicationId "de.tb.launcher"
         versionCode 42
         versionName "0.7.4"
     }
@@ -35,11 +36,12 @@ android {
         }
 
         flavorAtest {
-          buildConfigField "boolean", "IS_NIGHTLY_BUILD", "true"
-          versionCode = Integer.parseInt(new Date().format('yyMMdd'))
-          versionName = new Date().format('yyMMdd')
-          applicationId "com.benny.openlauncher.nightly"
-          resValue 'string', 'app_name', "OL Nightly"
+            buildConfigField "boolean", "IS_NIGHTLY_BUILD", "true"
+            versionCode = Integer.parseInt(new Date().format('yyMMdd'))
+            versionName = new Date().format('yyMMdd')
+            applicationId "de.tb.launcher.nightly"
+            //applicationId "com.benny.openlauncher.nightly"
+            resValue 'string', 'app_name', "OL Nightly"
         }
 
         flavorGsantner {
@@ -55,7 +57,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -112,7 +115,7 @@ dependencies {
     implementation 'com.nononsenseapps:filepicker:4.2.1'
     implementation 'org.slf4j:slf4j-android:1.7.21'
 
-    implementation ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+    implementation('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true
     }
 
