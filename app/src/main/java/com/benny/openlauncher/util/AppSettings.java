@@ -278,8 +278,21 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getString(R.string.pref_master__password_key, "");
     }
 
+    /**
+     * Checks whether the settings are locked with a password
+     *
+     * @return {@code true}, if so
+     */
     public boolean isSettingLockActive() {
         return _prefApp.contains(_context.getString(R.string.pref_master__password_key));
+    }
+
+    public boolean showAppInfo() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_app_info), true);
+    }
+
+    public boolean isDeinstallationAllowed() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_deinstallation), true);
     }
 
     // internal preferences below here

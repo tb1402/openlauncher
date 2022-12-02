@@ -24,6 +24,7 @@ import com.benny.openlauncher.activity.homeparts.HpItemOption;
 import com.benny.openlauncher.interfaces.DropTargetListener;
 import com.benny.openlauncher.manager.Setup;
 import com.benny.openlauncher.model.Item;
+import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.DragAction.Action;
 import com.benny.openlauncher.util.DragHandler;
 import com.benny.openlauncher.util.Tool;
@@ -359,8 +360,9 @@ public final class ItemOptionView extends FrameLayout {
                     itemList.add(editItem);
                     itemList.add(removeItem);
                 }
-                itemList.add(uninstallItem);
-                itemList.add(infoItem);
+                AppSettings settings = AppSettings.get();
+                if (settings.isDeinstallationAllowed()) itemList.add(uninstallItem);
+                if (settings.showAppInfo()) itemList.add(infoItem);
                 break;
             case SHORTCUT:
                 if (!getDragAction().equals(Action.DRAWER)) {
