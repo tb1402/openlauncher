@@ -183,9 +183,13 @@
     <string name="pref_master__lock_dialog_description">Enter the password which will be used for restricting access to the settings</string>
     <string name="pref_master__lock_remove">Remove password</string>
     <string name="pref_behaviour__summary_app_info">Allow app info option for apps</string>
-    <string name="pref_behaviour__summary_deinstallation">Allow deinstallation option for all apps</string>
+    <string name="pref_behaviour__summary_allow_uninstall">Allow uninstall option for all apps</string>
     <string name="pref_behaviour__title_app_info">Allow app info</string>
-    <string name="pref_behaviour__title_deinstallation">Allow deinstallation</string>
+    <string name="pref_behaviour__title_allow_uninstall">Allow uninstall</string>
+    <string name="pref_behaviour__title_allow_shortcuts_widgets">Allow shortcuts and widgets</string>
+    <string name="pref_behaviour__summary_allow_shortcuts_widgets">Allow the creation of widgets and shortcuts</string>
+    <string name="pref_behaviour__title_disable_pages">Disable desktop pages</string>
+    <string name="pref_behaviour__summary_disable_pages">Disable the creation of pages on the desktop</string>
     <string name="activity_login_password_wrong">The entered password is wrong</string>
 
     <!-- Arrays -->

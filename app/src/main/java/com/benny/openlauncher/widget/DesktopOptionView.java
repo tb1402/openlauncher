@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.manager.Setup;
+import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.Tool;
 import com.benny.openlauncher.viewutil.IconLabelItem;
 import com.mikepenz.fastadapter.FastAdapter;
@@ -70,16 +71,10 @@ public class DesktopOptionView extends FrameLayout {
     public void updateLockIcon(final boolean lock) {
         if (_actionAdapters.length == 0) return;
         if (_actionAdapters[0].getAdapterItemCount() == 0) return;
-        post(new Runnable() {
-            @Override
-            public void run() {
-                if (lock) {
-                    _actionAdapters[0].getAdapterItem(2)._icon = getContext().getResources().getDrawable(R.drawable.ic_lock);
-                } else {
-                    _actionAdapters[0].getAdapterItem(2)._icon = getContext().getResources().getDrawable(R.drawable.ic_lock_open);
-                }
-                _actionAdapters[0].notifyAdapterItemChanged(2);
-            }
+        post(() -> {
+            int lockItemPos = AppSettings.get().arePagesEnabled() ? 2 : 0;
+            _actionAdapters[0].getAdapterItem(lockItemPos)._icon = getContext().getResources().getDrawable(lock ? R.drawable.ic_lock : R.drawable.ic_lock_open);
+            _actionAdapters[0].notifyAdapterItemChanged(lockItemPos);
         });
     }
 
@@ -157,16 +152,22 @@ public class DesktopOptionView extends FrameLayout {
     }
 
     private void initItems(final Typeface typeface, final com.mikepenz.fastadapter.listeners.OnClickListener<IconLabelItem> clickListener, int itemWidth) {
+        AppSettings settings = AppSettings.get();
+
         List<IconLabelItem> itemsTop = new ArrayList<>();
-        itemsTop.add(createItem(R.drawable.ic_delete, R.string.remove, typeface, itemWidth));
-        itemsTop.add(createItem(R.drawable.ic_star, R.string.home, typeface, itemWidth));
+        if (settings.arePagesEnabled()) {
+            itemsTop.add(createItem(R.drawable.ic_delete, R.string.remove, typeface, itemWidth));
+            itemsTop.add(createItem(R.drawable.ic_star, R.string.home, typeface, itemWidth));
+        }
         itemsTop.add(createItem(R.drawable.ic_lock, R.string.lock, typeface, itemWidth));
         _actionAdapters[0].set(itemsTop);
         _actionAdapters[0].withOnClickListener(clickListener);
 
         List<IconLabelItem> itemsBottom = new ArrayList<>();
-        itemsBottom.add(createItem(R.drawable.ic_dashboard, R.string.widget, typeface, itemWidth));
-        itemsBottom.add(createItem(R.drawable.ic_launch, R.string.action, typeface, itemWidth));
+        if (settings.areShortcutsAndWidgetsAllowed()) {
+            itemsBottom.add(createItem(R.drawable.ic_dashboard, R.string.widget, typeface, itemWidth));
+            itemsBottom.add(createItem(R.drawable.ic_launch, R.string.action, typeface, itemWidth));
+        }
         itemsBottom.add(createItem(R.drawable.ic_settings, R.string.pref_title__settings, typeface, itemWidth));
         _actionAdapters[1].set(itemsBottom);
         _actionAdapters[1].withOnClickListener(clickListener);

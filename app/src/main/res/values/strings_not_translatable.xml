@@ -101,7 +101,9 @@
     <string name="pref_key__desktop_search_use_grid" translatable="false">pref_key__desktop_search_use_grid</string>
     <string name="pref_key__remove_lock" translatable="false">pref_key__remove_lock</string>
     <string name="pref_key__allow_app_info" translatable="false">pref_key__allow_app_info</string>
-    <string name="pref_key__allow_deinstallation" translatable="false">pref_key__allow_deinstallation</string>
+    <string name="pref_key__allow_uninstallation" translatable="false">pref_key__allow_uninstallation</string>
+    <string name="pref_key__allow_shortcuts_widgets" translatable="false">pref_key__allow_shortcuts_widgets</string>
+    <string name="pref_key__disable_pages" translatable="false">pref_key__disable_pages</string>
 
     <string name="pref_key__more_info__settings" translatable="false">pref_key__more_info__settings</string>
     <string name="pref_key__more_info__source_code" translatable="false">pref_key__more_info__source_code</string>

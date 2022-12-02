@@ -18,6 +18,7 @@ import com.benny.openlauncher.activity.HomeActivity;
 import com.benny.openlauncher.manager.Setup;
 import com.benny.openlauncher.model.Item;
 import com.benny.openlauncher.model.Item.Type;
+import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.Definitions;
 import com.benny.openlauncher.util.Definitions.ItemPosition;
 import com.benny.openlauncher.util.Definitions.ItemState;
@@ -193,15 +194,19 @@ public final class Desktop extends ViewPager implements DesktopCallback {
         }
 
         public void addPageLeft() {
+            if (!AppSettings.get().arePagesEnabled()) return;
+
             // Shift pages to the right (including home page)
             HomeActivity._db.addPage(0);
-            Setup.appSettings().setDesktopPageCurrent(Setup.appSettings().getDesktopPageCurrent()+1);
+            Setup.appSettings().setDesktopPageCurrent(Setup.appSettings().getDesktopPageCurrent() + 1);
 
             _desktop.getPages().add(0, getItemLayout());
             notifyDataSetChanged();
         }
 
         public void addPageRight() {
+            if (!AppSettings.get().arePagesEnabled()) return;
+
             _desktop.getPages().add(getItemLayout());
             notifyDataSetChanged();
         }

@@ -361,7 +361,7 @@ public final class ItemOptionView extends FrameLayout {
                     itemList.add(removeItem);
                 }
                 AppSettings settings = AppSettings.get();
-                if (settings.isDeinstallationAllowed()) itemList.add(uninstallItem);
+                if (settings.isUninstallationAllowed()) itemList.add(uninstallItem);
                 if (settings.showAppInfo()) itemList.add(infoItem);
                 break;
             case SHORTCUT:
@@ -441,8 +441,9 @@ public final class ItemOptionView extends FrameLayout {
                     }
                 }
             case SHORTCUT:
-                itemList.add(uninstallItem);
-                itemList.add(infoItem);
+                AppSettings settings = AppSettings.get();
+                if (settings.isUninstallationAllowed()) itemList.add(uninstallItem);
+                if (settings.showAppInfo()) itemList.add(infoItem);
                 break;
         }
 

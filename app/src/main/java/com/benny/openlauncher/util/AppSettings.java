@@ -16,9 +16,7 @@ import net.gsantner.opoc.preference.SharedPreferencesPropertyBackend;
 
 import org.threeten.bp.format.DateTimeFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class AppSettings extends SharedPreferencesPropertyBackend {
     public AppSettings(Context context) {
@@ -291,8 +289,16 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_app_info), true);
     }
 
-    public boolean isDeinstallationAllowed() {
-        return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_deinstallation), true);
+    public boolean isUninstallationAllowed() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_uninstallation), true);
+    }
+
+    public boolean areShortcutsAndWidgetsAllowed() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__allow_shortcuts_widgets), true);
+    }
+
+    public boolean arePagesEnabled() {
+        return !_prefApp.getBoolean(_context.getString(R.string.pref_key__disable_pages), false);
     }
 
     // internal preferences below here

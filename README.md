@@ -5,17 +5,21 @@
 This is an open source launcher project for Android devices that has been built completely from scratch. The main goal of this launcher is to find a healthy medium between customization and simplicity. At this point in time it implements most features required in a typical launcher but could benefit greatly from some general polish. If you would like to help out feel free to submit issues or ask about submitting a pull request with a feature you want to see in the launcher.
 
 <div style="display:flex;">
-<a href="https://f-droid.org/repository/browse/?fdid=com.benny.openlauncher">
-    <img height="80" alt="Get it on F-Droid" src="https://f-droid.org/badge/get-it-on.png">
-</a>
-<a href="https://play.google.com/store/apps/details?id=com.benny.openlauncher">
-    <img height="80" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
-</a>
-</div>
-
-<div style="display:flex;">
     <img src="https://raw.githubusercontent.com/OpenLauncherTeam/openlauncher/master/assets/screenshots.png">
 </div>
+
+### Changes in this fork
+This fork adds some extra settings to lock down the launcher:
+- password for settings
+- disable pages on desktop
+- disable uninstall and app info options
+- disable creation of widgets and shortcuts
+
+### Why I forked openlauncher
+I was searching for a launcher which could provide a "kiosk"-mode (a.k.a a strongly locked down launcher which could only be used to open apps) and the ability to hide apps.
+After some digging I found [this app](https://play.google.com/store/apps/details?id=com.robomigo.launcher) in the PlayStore, but it isn't open-source and uses firebase/gms ads for tracking.
+So I decompiled and modified it, until at some point I found the openlaucher GitHub link in the strings.xml.
+Now instead of manually editing the .smali files on the closed source app, I decided to fork openlauncher and add the kiosk features myself.
 
 ### Status
 

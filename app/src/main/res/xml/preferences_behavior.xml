@@ -32,9 +32,22 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:icon="@drawable/ic_delete"
-        android:key="@string/pref_key__allow_deinstallation"
-        android:summary="@string/pref_behaviour__summary_deinstallation"
-        android:title="@string/pref_behaviour__title_deinstallation" />
+        android:key="@string/pref_key__allow_uninstallation"
+        android:summary="@string/pref_behaviour__summary_allow_uninstall"
+        android:title="@string/pref_behaviour__title_allow_uninstall" />
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="@string/pref_key__disable_pages"
+        android:summary="@string/pref_behaviour__summary_disable_pages"
+        android:title="@string/pref_behaviour__title_disable_pages" />
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:icon="@drawable/ic_launch"
+        android:key="@string/pref_key__allow_shortcuts_widgets"
+        android:summary="@string/pref_behaviour__summary_allow_shortcuts_widgets"
+        android:title="@string/pref_behaviour__title_allow_shortcuts_widgets" />
 
 
     <com.benny.openlauncher.widget.ColorPreferenceCategory android:title="@string/pref_title__gestures">
