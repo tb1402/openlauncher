@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ import com.benny.openlauncher.model.Item;
 import com.benny.openlauncher.notifications.NotificationListener;
 import com.benny.openlauncher.receivers.AppUpdateReceiver;
 import com.benny.openlauncher.receivers.ShortcutReceiver;
+import com.benny.openlauncher.receivers.WifiReceiver;
 import com.benny.openlauncher.util.AppManager;
 import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.DatabaseHelper;
@@ -198,6 +200,10 @@ public final class HomeActivity extends Activity implements OnDesktopEditListene
             View decorView = window.getDecorView();
             decorView.setSystemUiVisibility(1536);
         }
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        registerReceiver(new WifiReceiver(), intentFilter);
 
         init();
     }

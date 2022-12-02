@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 29
 
         flavorDimensions "versionCode"
@@ -125,6 +125,8 @@ dependencies {
 
     // Tools
     implementation "com.jakewharton:butterknife:${version_library_butterknife}"
+    implementation 'com.github.MuntashirAkon:libadb-android:1.0.1'
+    implementation 'com.github.MuntashirAkon:sun-security-android:1.1'
 
     // Processors
     def anpros = ["com.jakewharton:butterknife-compiler:${version_library_butterknife}"]
