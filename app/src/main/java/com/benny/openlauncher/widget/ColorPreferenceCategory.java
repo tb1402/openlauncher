@@ -26,5 +26,10 @@ public class ColorPreferenceCategory extends PreferenceCategory {
         super.onBindViewHolder(holder);
         TextView titleView = (TextView) holder.findViewById(android.R.id.title);
         titleView.setTextColor(AppSettings.get().getPrimaryColor());
+
+        //increase max lines for summary
+        TextView summary=(TextView)holder.findViewById(android.R.id.summary);
+        summary.setSingleLine(false);
+        summary.setMaxLines(10);
     }
 }

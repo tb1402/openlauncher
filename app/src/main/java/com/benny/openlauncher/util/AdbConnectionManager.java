@@ -1,5 +1,6 @@
 package com.benny.openlauncher.util;
 
+import android.content.Context;
 import android.os.Build;
 import android.sun.security.x509.AlgorithmId;
 import android.sun.security.x509.CertificateAlgorithmId;
@@ -16,7 +17,11 @@ import android.sun.security.x509.SubjectKeyIdentifierExtension;
 import android.sun.security.x509.X500Name;
 import android.sun.security.x509.X509CertImpl;
 import android.sun.security.x509.X509CertInfo;
+import android.util.Log;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -31,9 +36,23 @@ import io.github.muntashirakon.adb.AbsAdbConnectionManager;
 public class AdbConnectionManager extends AbsAdbConnectionManager {
     private static AdbConnectionManager INSTANCE;
 
-    public static AdbConnectionManager getInstance() throws Exception {
+    public synchronized static AdbConnectionManager getInstance(Context c) throws Exception {
         if (INSTANCE == null) {
-            INSTANCE = new AdbConnectionManager();
+            c = c.getApplicationContext();
+            File f = new File(c.getFilesDir() + "/cert");
+            if (!f.exists()) return INSTANCE = new AdbConnectionManager(c, null, null);
+
+            ObjectInputStream oi = new ObjectInputStream(new FileInputStream(f));
+            Certificate cert = (Certificate) oi.readObject();
+            oi.close();
+
+            f = new File(c.getFilesDir() + "/pk");
+            if (!f.exists()) return INSTANCE = new AdbConnectionManager(c, null, null);
+
+            oi = new ObjectInputStream(new FileInputStream(f));
+            PrivateKey key = (PrivateKey) oi.readObject();
+            oi.close();
+            return INSTANCE = new AdbConnectionManager(c, key, cert);
         }
         return INSTANCE;
     }
@@ -41,13 +60,12 @@ public class AdbConnectionManager extends AbsAdbConnectionManager {
     private PrivateKey mPrivateKey;
     private Certificate mCertificate;
 
-    private AdbConnectionManager() throws Exception {
+    private AdbConnectionManager(Context c, PrivateKey privateKey, Certificate cert) throws Exception {
         // Set the API version whose `adbd` is running
         setApi(Build.VERSION.SDK_INT);
-        // TODO: Load private key and certificate (along with public key) from
-        //  some place such as KeyStore or file system.
-        mPrivateKey = null;
-        mCertificate = null;
+
+        mPrivateKey = privateKey;
+        mCertificate = cert;
         if (mPrivateKey == null) {
             // Generate a new key pair
             int keySize = 2048;
@@ -56,16 +74,16 @@ public class AdbConnectionManager extends AbsAdbConnectionManager {
             KeyPair generateKeyPair = keyPairGenerator.generateKeyPair();
             PublicKey publicKey = generateKeyPair.getPublic();
             mPrivateKey = generateKeyPair.getPrivate();
+
             // Generate a certificate
             // On Android, it requires sun.security-android library as mentioned
             // above.
-            String subject = "CN=My Awesome App";
             String algorithmName = "SHA512withRSA";
             long expiryDate = System.currentTimeMillis() + 86400000;
             CertificateExtensions certificateExtensions = new CertificateExtensions();
             certificateExtensions.set("SubjectKeyIdentifier", new SubjectKeyIdentifierExtension(
                     new KeyIdentifier(publicKey).getIdentifier()));
-            X500Name x500Name = new X500Name(subject);
+            X500Name x500Name = new X500Name("CN=Launcher local");
             Date notBefore = new Date();
             Date notAfter = new Date(expiryDate);
             certificateExtensions.set("PrivateKeyUsage", new PrivateKeyUsageExtension(notBefore, notAfter));
@@ -82,7 +100,10 @@ public class AdbConnectionManager extends AbsAdbConnectionManager {
             X509CertImpl x509CertImpl = new X509CertImpl(x509CertInfo);
             x509CertImpl.sign(mPrivateKey, algorithmName);
             mCertificate = x509CertImpl;
-            // TODO: Store the key pair to some place else.
+
+            asyncTaskWriteObjectToFile.writeFileStatus wfs = (success1, name) -> Log.d("TBL", success1 + name);
+            new asyncTaskWriteObjectToFile(c, "pk", mPrivateKey, wfs).execute();
+            new asyncTaskWriteObjectToFile(c, "cert", mCertificate, wfs).execute();
         }
     }
 
@@ -98,6 +119,6 @@ public class AdbConnectionManager extends AbsAdbConnectionManager {
 
     @Override
     protected String getDeviceName() {
-        return "MyAwesomeApp";
+        return "Launcher local";
     }
 }

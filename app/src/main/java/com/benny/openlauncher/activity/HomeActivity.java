@@ -3,6 +3,7 @@ package com.benny.openlauncher.activity;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.appwidget.AppWidgetManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Build.VERSION;
@@ -41,7 +43,10 @@ import com.benny.openlauncher.manager.Setup;
 import com.benny.openlauncher.model.App;
 import com.benny.openlauncher.model.Item;
 import com.benny.openlauncher.notifications.NotificationListener;
+import com.benny.openlauncher.receivers.AirplaneModeReceiver;
 import com.benny.openlauncher.receivers.AppUpdateReceiver;
+import com.benny.openlauncher.receivers.BluetoothReceiver;
+import com.benny.openlauncher.receivers.LocationReceiver;
 import com.benny.openlauncher.receivers.ShortcutReceiver;
 import com.benny.openlauncher.receivers.WifiReceiver;
 import com.benny.openlauncher.util.AppManager;
@@ -195,15 +200,24 @@ public final class HomeActivity extends Activity implements OnDesktopEditListene
         setContentView(getLayoutInflater().inflate(R.layout.activity_home, null));
 
         // transparent status and navigation
-        if (VERSION.SDK_INT >= 21) {
-            Window window = getWindow();
-            View decorView = window.getDecorView();
-            decorView.setSystemUiVisibility(1536);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(1536);
 
+        //broadcast managers for locking access to wifi, bluetooth etc.
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
-        registerReceiver(new WifiReceiver(), intentFilter);
+        intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        getApplicationContext().registerReceiver(new WifiReceiver(), intentFilter);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        getApplicationContext().registerReceiver(new BluetoothReceiver(), intentFilter);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        getApplicationContext().registerReceiver(new AirplaneModeReceiver(), intentFilter);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(LocationManager.MODE_CHANGED_ACTION);
+        getApplicationContext().registerReceiver(new LocationReceiver(), intentFilter);
 
         init();
     }

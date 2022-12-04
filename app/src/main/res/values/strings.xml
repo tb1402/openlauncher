@@ -192,6 +192,15 @@
     <string name="pref_behaviour__summary_disable_pages">Disable the creation of pages on the desktop</string>
     <string name="activity_login_password_wrong">The entered password is wrong</string>
 
+    <string name="pref_lock_toggles__category_title">Toggle lock</string>
+    <string name="pref_lock_toggles__category_summary">These settings provide the ability to lock toggles in the status bar e.g. for wifi and bt.\n
+    Note: For wifi and airplane mode settings you must start ADB in tcp/ip mode on port 5555 and accept the prompt asking for connection permission.\n
+    For GPS you must grant the app the WRITE_SECURE_SETTINGS permissions via ADB.</string>
+    <string name="pref_lock_toggles__title_wifi">Lock wifi toggle</string>
+    <string name="pref_lock_toggles__title_bt">Lock bluetooth toggle</string>
+    <string name="pref_lock_toggles__title_location">Lock GPS</string>
+    <string name="pref_lock_toggles__title_airplane_mode">Lock airplane mode</string>
+
     <!-- Arrays -->
     <string name="vertical_scroll_drawer">Vertical</string>
     <string name="horizontal_paged_drawer">Paged</string>

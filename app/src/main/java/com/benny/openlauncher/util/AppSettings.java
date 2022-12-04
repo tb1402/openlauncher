@@ -301,6 +301,22 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return !_prefApp.getBoolean(_context.getString(R.string.pref_key__disable_pages), false);
     }
 
+    public boolean isWifiToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_wifi), false);
+    }
+
+    public boolean isBluetoothToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_bt), false);
+    }
+
+    public boolean isAirplaneModeToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_airplane_mode), false);
+    }
+
+    public boolean isLocationToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_location), false);
+    }
+
     // internal preferences below here
     public boolean getMinibarEnable() {
         return getBool(R.string.pref_key__minibar_enable, true);
