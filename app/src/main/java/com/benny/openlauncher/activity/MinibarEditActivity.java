@@ -25,15 +25,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+/*import butterknife.BindView;
+import butterknife.ButterKnife;*/
 
 public class MinibarEditActivity extends ColorActivity implements ItemTouchCallback {
-    @BindView(R.id.toolbar)
+    //@BindView(R.id.toolbar)
     Toolbar _toolbar;
-    @BindView(R.id.enableSwitch)
+    //@BindView(R.id.enableSwitch)
     SwitchCompat _enableSwitch;
-    @BindView(R.id.recyclerView)
+    //@BindView(R.id.recyclerView)
     RecyclerView _recyclerView;
     private FastItemAdapter<Item> _adapter;
 
@@ -42,7 +42,10 @@ public class MinibarEditActivity extends ColorActivity implements ItemTouchCallb
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_minibar_edit);
-        ButterKnife.bind(this);
+        _toolbar=findViewById(R.id.toolbar);
+        _enableSwitch=findViewById(R.id.enableSwitch);
+        _recyclerView=findViewById(R.id.recyclerView);
+        //ButterKnife.bind(this);
         setSupportActionBar(_toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

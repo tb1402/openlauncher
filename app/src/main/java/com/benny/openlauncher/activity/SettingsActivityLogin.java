@@ -11,13 +11,13 @@ import com.benny.openlauncher.R;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+/*import butterknife.BindView;
+import butterknife.ButterKnife;*/
 
 import net.gsantner.opoc.util.ContextUtils;
 
 public class SettingsActivityLogin extends ColorActivity {
-    @BindView(R.id.toolbar)
+    //@BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     public void onCreate(Bundle paramBundle) {
@@ -26,7 +26,8 @@ public class SettingsActivityLogin extends ColorActivity {
         (new ContextUtils(this)).setAppLanguage(this._appSettings.getLanguage());
 
         setContentView(R.layout.activity_settings_login);
-        ButterKnife.bind(this);
+        toolbar=findViewById(R.id.toolbar);
+        //ButterKnife.bind(this);
 
         //this.toolbar.setTitle(2131755388);
         getSupportActionBar();

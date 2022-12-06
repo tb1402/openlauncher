@@ -124,15 +124,15 @@ dependencies {
     }
 
     // Tools
-    implementation "com.jakewharton:butterknife:${version_library_butterknife}"
+    //implementation "com.jakewharton:butterknife:${version_library_butterknife}"
     implementation 'com.github.MuntashirAkon:libadb-android:1.0.1'
     implementation 'com.github.MuntashirAkon:sun-security-android:1.1'
 
     // Processors
-    def anpros = ["com.jakewharton:butterknife-compiler:${version_library_butterknife}"]
+    /*def anpros = ["com.jakewharton:butterknife-compiler:${version_library_butterknife}"]
     for (anpro in anpros) {
         annotationProcessor anpro
-    }
+    }*/
 }
 
 repositories {
