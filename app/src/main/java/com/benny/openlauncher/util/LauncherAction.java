@@ -9,7 +9,8 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -23,6 +24,7 @@ import com.benny.openlauncher.viewutil.DialogHelper;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Handler;
 
 public class LauncherAction {
 
@@ -117,6 +119,14 @@ public class LauncherAction {
                     Object statusBarService = context.getSystemService("statusbar");
                     Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
                     Method statusBarExpand = statusBarManager.getMethod("expandNotificationsPanel");
+                    statusBarExpand.invoke(statusBarService);
+
+                    try {
+Thread.sleep(3000);
+                    } catch (Exception e) {
+
+                    }
+                    statusBarExpand = statusBarManager.getMethod("togglePanel");
                     statusBarExpand.invoke(statusBarService);
                 } catch (Exception e) {
                     e.printStackTrace();
