@@ -196,7 +196,7 @@ public final class HomeActivity extends Activity implements OnDesktopEditListene
         // transparent status and navigation
         getWindow().getDecorView().setSystemUiVisibility(1536);
 
-        //broadcast managers for locking access to wifi, bluetooth etc.
+        //broadcast receivers for locking access to wifi, bluetooth etc.
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         getApplicationContext().registerReceiver(new WifiReceiver(), intentFilter);

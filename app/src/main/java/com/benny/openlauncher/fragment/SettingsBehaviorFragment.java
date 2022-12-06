@@ -3,12 +3,9 @@ package com.benny.openlauncher.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
-import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.activity.HomeActivity;
-import com.benny.openlauncher.model.App;
 import com.benny.openlauncher.util.AppManager;
 import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.LauncherAction;
@@ -39,26 +36,15 @@ public class SettingsBehaviorFragment extends SettingsBaseFragment {
             case R.string.pref_key__gesture_swipe_down:
             case R.string.pref_key__gesture_pinch_in:
             case R.string.pref_key__gesture_pinch_out:
-                DialogHelper.selectGestureDialog(getActivity(), preference.getTitle().toString(), new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                        if (position == 1) {
-                            DialogHelper.selectActionDialog(getActivity(), new MaterialDialog.ListCallback() {
-                                @Override
-                                public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                                    AppSettings.get().setString(key, LauncherAction.getActionItem(position)._action.toString());
-                                }
-                            });
-                        } else if (position == 2) {
-                            DialogHelper.selectAppDialog(getActivity(), new DialogHelper.OnAppSelectedListener() {
-                                @Override
-                                public void onAppSelected(App app) {
-                                    AppSettings.get().setString(key, Tool.getIntentAsString(Tool.getIntentFromApp(app)));
-                                }
-                            });
-                        } else {
-                            AppSettings.get().setString(key, "");
-                        }
+                DialogHelper.selectGestureDialog(getActivity(), preference.getTitle().toString(), (dialog, itemView, position, text) -> {
+                    if (position == 1) {
+                        DialogHelper.selectActionDialog(getActivity(), (dialog1, itemView1, position1, text1) ->
+                                AppSettings.get().setString(key, LauncherAction.getActionItem(position1)._action.toString()));
+                    } else if (position == 2) {
+                        DialogHelper.selectAppDialog(getActivity(), app ->
+                                AppSettings.get().setString(key, Tool.getIntentAsString(Tool.getIntentFromApp(app))));
+                    } else {
+                        AppSettings.get().setString(key, "");
                     }
                 });
                 break;
