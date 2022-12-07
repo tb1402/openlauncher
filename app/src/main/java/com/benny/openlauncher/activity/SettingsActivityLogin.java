@@ -17,7 +17,6 @@ import butterknife.ButterKnife;*/
 import net.gsantner.opoc.util.ContextUtils;
 
 public class SettingsActivityLogin extends ColorActivity {
-    //@BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     public void onCreate(Bundle paramBundle) {
@@ -27,9 +26,7 @@ public class SettingsActivityLogin extends ColorActivity {
 
         setContentView(R.layout.activity_settings_login);
         toolbar=findViewById(R.id.toolbar);
-        //ButterKnife.bind(this);
 
-        //this.toolbar.setTitle(2131755388);
         getSupportActionBar();
         setSupportActionBar(this.toolbar);
         this.toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white));
@@ -39,16 +36,13 @@ public class SettingsActivityLogin extends ColorActivity {
         if (this._appSettings.getAppRestartRequired()) startActivity(new Intent(this, HomeActivity.class));
 
         //captcha to prevent guessing pw
-        int randomA = -1, randomB = -1;
-        boolean useCaptcha = false;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            randomA = ThreadLocalRandom.current().nextInt(0, 10);
-            randomB = ThreadLocalRandom.current().nextInt(0, 10);
-            useCaptcha = true;
-        }
+        int randomA, randomB;
+        boolean useCaptcha = true;
+        randomA = ThreadLocalRandom.current().nextInt(0, 10);
+        randomB = ThreadLocalRandom.current().nextInt(0, 10);
 
-        final int added = useCaptcha ? randomA + randomB : -1;
-        if (useCaptcha) ((TextView) findViewById(R.id.tv_captcha)).setText(String.format("%s+%s", randomA, randomB));
+        final int added = randomA + randomB;
+        ((TextView) findViewById(R.id.tv_captcha)).setText(String.format("%s+%s", randomA, randomB));
 
         final String password = _appSettings.getPassword();
         final EditText etPassword = findViewById(R.id.et_password);

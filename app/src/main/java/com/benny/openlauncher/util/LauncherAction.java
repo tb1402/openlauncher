@@ -120,14 +120,6 @@ public class LauncherAction {
                     Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
                     Method statusBarExpand = statusBarManager.getMethod("expandNotificationsPanel");
                     statusBarExpand.invoke(statusBarService);
-
-                    try {
-Thread.sleep(3000);
-                    } catch (Exception e) {
-
-                    }
-                    statusBarExpand = statusBarManager.getMethod("togglePanel");
-                    statusBarExpand.invoke(statusBarService);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

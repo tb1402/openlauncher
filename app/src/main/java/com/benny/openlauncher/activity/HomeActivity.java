@@ -41,6 +41,7 @@ import com.benny.openlauncher.receivers.AirplaneModeReceiver;
 import com.benny.openlauncher.receivers.AppUpdateReceiver;
 import com.benny.openlauncher.receivers.BluetoothReceiver;
 import com.benny.openlauncher.receivers.LocationReceiver;
+import com.benny.openlauncher.receivers.NotificationPanelReceiver;
 import com.benny.openlauncher.receivers.ShortcutReceiver;
 import com.benny.openlauncher.receivers.WifiReceiver;
 import com.benny.openlauncher.util.AppManager;
@@ -212,6 +213,10 @@ public final class HomeActivity extends Activity implements OnDesktopEditListene
         intentFilter = new IntentFilter();
         intentFilter.addAction(LocationManager.MODE_CHANGED_ACTION);
         getApplicationContext().registerReceiver(new LocationReceiver(), intentFilter);
+
+        intentFilter=new IntentFilter();
+        intentFilter.addAction("com.samsung.systemui.statusbar.EXPANDED");
+        getApplicationContext().registerReceiver(new NotificationPanelReceiver(),intentFilter);
 
         init();
     }

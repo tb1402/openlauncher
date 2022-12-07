@@ -109,6 +109,7 @@
     <string name="pref_key__lock_toggles_bt" translatable="false">pref_key__lock_toggles_bt</string>
     <string name="pref_key__lock_toggles_location" translatable="false">pref_key__lock_toggles_location</string>
     <string name="pref_key__lock_toggles_airplane_mode" translatable="false">pref_key__lock_toggles_airplane_mode</string>
+    <string name="pref_key__lock_notification_panel" translatable="false">pref_key__lock_notification_panel</string>
 
     <string name="pref_key__more_info__settings" translatable="false">pref_key__more_info__settings</string>
     <string name="pref_key__more_info__source_code" translatable="false">pref_key__more_info__source_code</string>

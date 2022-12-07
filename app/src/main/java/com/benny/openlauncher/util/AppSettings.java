@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+
 import androidx.core.content.ContextCompat;
 
 import com.benny.openlauncher.AppObject;
@@ -315,6 +316,10 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
 
     public boolean isLocationToggleLocked() {
         return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_location), false);
+    }
+
+    public boolean isNotificationPanelLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_notification_panel), false);
     }
 
     // internal preferences below here
