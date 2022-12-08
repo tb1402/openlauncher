@@ -200,6 +200,7 @@
     <string name="pref_lock_toggles__title_bt">Lock bluetooth toggle</string>
     <string name="pref_lock_toggles__title_location">Lock GPS</string>
     <string name="pref_lock_toggles__title_airplane_mode">Lock airplane mode</string>
+    <string name="pref_lock__title_notification_panel">Lock notification panel (samsung only)</string>
 
     <!-- Arrays -->
     <string name="vertical_scroll_drawer">Vertical</string>

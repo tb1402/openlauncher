@@ -218,6 +218,12 @@ public final class HomeActivity extends Activity implements OnDesktopEditListene
         intentFilter.addAction("com.samsung.systemui.statusbar.EXPANDED");
         getApplicationContext().registerReceiver(new NotificationPanelReceiver(),intentFilter);
 
+        /*
+        (ACTION_UP) no jump to callscreen no ColorfulIndicator
+2022-12-08 07:08:51.687   726-726   SmartMirro...roringTile pid-726                              I      action::com.samsung.intent.action.CAST_STATUS_CHANGED
+2022-12-08 07:08:51.690  3872-3872  SecAccountTiles         pid-3872                             V  Received broadcast: com.samsung.intent.action.ACTION_DEFAULT_DATA_SUBSCRIPTION_CHANGE_SUCCESS
+         */
+
         init();
     }
 

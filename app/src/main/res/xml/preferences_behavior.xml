@@ -74,6 +74,12 @@
             android:key="@string/pref_key__lock_toggles_airplane_mode"
             android:title="@string/pref_lock_toggles__title_airplane_mode" />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_notification_panel"
+            android:title="@string/pref_lock__title_notification_panel" />
+
     </com.benny.openlauncher.widget.ColorPreferenceCategory>
 
 
