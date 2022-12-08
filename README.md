@@ -17,6 +17,7 @@ This fork adds some extra settings to lock down the launcher:
 - disable uninstall and app info options
 - disable creation of widgets and shortcuts
 - lock wifi, bt, gps or airplane mode, so they stay always on or off
+- lock access to notification panel (samsung devices only)
 
 ### Why I forked openlauncher
 

@@ -224,25 +224,6 @@ public abstract class GsPreferenceFragmentCompat<AS extends SharedPreferencesPro
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         updatePreferenceIcons.callback(this);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            view.postDelayed(() -> {
-                ViewGroup.LayoutParams lpg = view.getLayoutParams();
-                if (lpg instanceof LinearLayout.LayoutParams) {
-                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) lpg;
-                    lp.rightMargin = lp.leftMargin = (int) _cu.convertDpToPx(16);
-                    view.setLayoutParams(lp);
-                } else if (lpg instanceof FrameLayout.LayoutParams) {
-                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) lpg;
-                    lp.rightMargin = lp.leftMargin = (int) _cu.convertDpToPx(16);
-                    view.setLayoutParams(lp);
-                } else if (lpg instanceof RelativeLayout.LayoutParams) {
-                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) lpg;
-                    lp.rightMargin = lp.leftMargin = (int) _cu.convertDpToPx(16);
-                    view.setLayoutParams(lp);
-                }
-            }, 10);
-        }
     }
 
     private synchronized void updatePreferenceChangedListeners(boolean shouldListen) {

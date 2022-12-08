@@ -199,7 +199,6 @@ public final class Dock extends CellContainer implements DesktopCallback {
 
     private Boolean isDockShowLabel() {
         boolean b = Setup.appSettings().getDockShowLabel();
-        Boolean ret = new Boolean(b);
-        return ret;
+        return Boolean.valueOf(b);
     }
 }

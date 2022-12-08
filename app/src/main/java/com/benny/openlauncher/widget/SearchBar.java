@@ -54,6 +54,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class SearchBar extends FrameLayout {
     private static Logger LOG = LoggerFactory.getLogger("SearchBar");
@@ -381,16 +382,13 @@ public class SearchBar extends FrameLayout {
 
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            bottomInset = insets.getSystemWindowInsetBottom();
-            setPadding(0, insets.getSystemWindowInsetTop(), 0, 0);
-            return insets;
-        }
+        bottomInset = insets.getSystemWindowInsetBottom();
+        setPadding(0, insets.getSystemWindowInsetTop(), 0, 0);
         return insets;
     }
 
     public DateTimeFormatter getSearchBarClockFormat(Integer id) {
-        if (_clockFormatterIndex != id && id > 0) {
+        if (!Objects.equals(_clockFormatterIndex, id) && id > 0) {
             if (_clockModes.containsKey(id)) {
                 return _clockModes.get(id);
             }

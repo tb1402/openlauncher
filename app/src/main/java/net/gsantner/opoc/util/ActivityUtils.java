@@ -218,9 +218,7 @@ public class ActivityUtils extends net.gsantner.opoc.util.ContextUtils {
     public ActivityUtils showGooglePlayEntryForThisApp() {
         String pkgId = "details?id=" + _activity.getPackageName();
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, Uri.parse("market://" + pkgId));
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                (Build.VERSION.SDK_INT >= 21 ? Intent.FLAG_ACTIVITY_NEW_DOCUMENT : Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET) |
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         try {
             _activity.startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
@@ -231,13 +229,11 @@ public class ActivityUtils extends net.gsantner.opoc.util.ContextUtils {
     }
 
     public ActivityUtils setStatusbarColor(int color, boolean... fromRes) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (fromRes != null && fromRes.length > 0 && fromRes[0]) {
-                color = ContextCompat.getColor(_context, color);
-            }
-
-            _activity.getWindow().setStatusBarColor(color);
+        if (fromRes != null && fromRes.length > 0 && fromRes[0]) {
+            color = ContextCompat.getColor(_context, color);
         }
+
+        _activity.getWindow().setStatusBarColor(color);
         return this;
     }
 
@@ -333,7 +329,7 @@ public class ActivityUtils extends net.gsantner.opoc.util.ContextUtils {
     public ActivityUtils removeActivityFromHistory() {
         try {
             ActivityManager am = (ActivityManager) _activity.getSystemService(Context.ACTIVITY_SERVICE);
-            if (am != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (am != null) {
                 List<ActivityManager.AppTask> tasks = am.getAppTasks();
                 if (tasks != null && !tasks.isEmpty()) {
                     tasks.get(0).setExcludeFromRecents(true);

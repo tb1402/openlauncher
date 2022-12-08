@@ -23,8 +23,8 @@ android {
 
         //applicationId "com.benny.openlauncher"
         applicationId "de.tb.launcher"
-        versionCode 42
-        versionName "0.7.4"
+        versionCode 10
+        versionName "0.1.0"
     }
 
     productFlavors {

@@ -43,6 +43,7 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -56,6 +57,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
+
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.SpannableString;

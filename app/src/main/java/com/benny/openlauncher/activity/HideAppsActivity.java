@@ -23,10 +23,8 @@ public class HideAppsActivity extends ColorActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hide_apps);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
         ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
