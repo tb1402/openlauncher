@@ -3,6 +3,7 @@ package com.benny.openlauncher.util;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.benny.openlauncher.R;
@@ -12,18 +13,19 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class BackupHelper {
-    public static void backupConfig(Context context, String file) {
+    public static void backupConfig(Context context, Uri uri) {
         PackageManager packageManager = context.getPackageManager();
         try {
             PackageInfo p = packageManager.getPackageInfo(context.getPackageName(), 0);
             String dataDir = p.applicationInfo.dataDir;
 
-            FileOutputStream fos = new FileOutputStream(file);
+            OutputStream fos = context.getContentResolver().openOutputStream(uri);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
             ZipOutputStream zos = new ZipOutputStream(bos);
 

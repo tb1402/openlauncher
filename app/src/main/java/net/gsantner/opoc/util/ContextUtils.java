@@ -449,7 +449,9 @@ public class ContextUtils {
      */
     public void restartApp(Class classToStart) {
         Intent intent = new Intent(_context, classToStart);
-        PendingIntent pendi = PendingIntent.getActivity(_context, 555, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendi = PendingIntent.getActivity(_context, 555, intent,
+                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE :
+                        PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
         if (_context instanceof Activity) {
             ((Activity) _context).finish();

@@ -25,11 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/*import butterknife.BindView;
-import butterknife.ButterKnife;*/
-
 public class SettingsActivity extends ColorActivity implements SettingsBaseFragment.OnPreferenceStartFragmentCallback {
-    //@BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     public void onCreate(Bundle b) {
@@ -48,7 +44,6 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
 
         setContentView(R.layout.activity_settings);
         toolbar=findViewById(R.id.toolbar);
-        //ButterKnife.bind(this);
 
         toolbar.setTitle(R.string.pref_title__settings);
         setSupportActionBar(toolbar);
@@ -82,7 +77,7 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
             List<Uri> files = Utils.getSelectedFilesFromResult(data);
             switch (requestCode) {
                 case Definitions.INTENT_BACKUP:
-                    BackupHelper.backupConfig(this, new File(Utils.getFileForUri(files.get(0)).getAbsolutePath() + "/openlauncher_" + new SimpleDateFormat("yyyyMMdd'T'HHmmss").format(new Date()) + ".zip").toString());
+                    BackupHelper.backupConfig(this, data.getData());
                     Setup.dataManager().open();
                     break;
                 case Definitions.INTENT_RESTORE:

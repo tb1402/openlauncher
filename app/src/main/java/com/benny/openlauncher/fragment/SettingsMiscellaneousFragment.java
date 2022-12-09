@@ -2,8 +2,10 @@ package com.benny.openlauncher.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.preference.Preference;
+
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -19,6 +21,10 @@ import com.nononsenseapps.filepicker.FilePickerActivity;
 import net.gsantner.opoc.util.ContextUtils;
 import net.gsantner.opoc.util.PermissionChecker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class SettingsMiscellaneousFragment extends SettingsBaseFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -33,10 +39,17 @@ public class SettingsMiscellaneousFragment extends SettingsBaseFragment {
         switch (key) {
             case R.string.pref_key__backup:
                 if (new PermissionChecker(getActivity()).doIfExtStoragePermissionGranted()) {
-                    Intent i = new Intent(getActivity(), FilePickerActivity.class)
+                    Intent i = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                    i.addCategory(Intent.CATEGORY_OPENABLE);
+                    i.setType("application/zip");
+                    i.putExtra(Intent.EXTRA_TITLE,
+                            "openlauncher_" + new SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.US).format(new Date()) + ".zip");
+                    getActivity().startActivityForResult(i,Definitions.INTENT_BACKUP);
+
+                    /*Intent i = new Intent(getActivity(), FilePickerActivity.class)
                             .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
-                    getActivity().startActivityForResult(i, Definitions.INTENT_BACKUP);
+                            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);*/
+                    //getActivity().startActivityForResult(i, Definitions.INTENT_BACKUP);
                 }
                 return true;
             case R.string.pref_key__restore:
