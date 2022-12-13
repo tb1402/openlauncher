@@ -14,6 +14,9 @@ public class BluetoothReceiver extends BroadcastReceiver {
         int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
         if (state == BluetoothAdapter.STATE_TURNING_OFF || state == BluetoothAdapter.STATE_OFF) return;
 
-        BluetoothAdapter.getDefaultAdapter().disable();
+        try {
+            BluetoothAdapter.getDefaultAdapter().disable();
+        }catch (SecurityException ignored){
+        }
     }
 }

@@ -13,6 +13,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -39,14 +40,14 @@ public class BackupHelper {
         }
     }
 
-    public static void restoreConfig(Context context, String file) {
+    public static void restoreConfig(Context context, Uri fileUri) {
         PackageManager packageManager = context.getPackageManager();
         try {
             PackageInfo p = packageManager.getPackageInfo(context.getPackageName(), 0);
             String dataDir = p.applicationInfo.dataDir;
 
-            extractFileFromZip(file, dataDir + "/databases/home.db", "home.db");
-            extractFileFromZip(file, dataDir + "/shared_prefs/app.xml", "app.xml");
+            extractFileFromZip(context.getContentResolver().openInputStream(fileUri), dataDir + "/databases/home.db", "home.db");
+            extractFileFromZip(context.getContentResolver().openInputStream(fileUri), dataDir + "/shared_prefs/app.xml", "app.xml");
             Toast.makeText(context, R.string.toast_backup_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(context, R.string.toast_backup_error, Toast.LENGTH_SHORT).show();
@@ -66,8 +67,8 @@ public class BackupHelper {
         inputStream.close();
     }
 
-    public static boolean extractFileFromZip(String filePath, String file, String name) throws Exception {
-        ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(new FileInputStream(filePath)));
+    public static boolean extractFileFromZip(InputStream input, String file, String name) throws Exception {
+        ZipInputStream inZip = new ZipInputStream(input);
         byte data[] = new byte[Definitions.BUFFER_SIZE];
         boolean found = false;
 

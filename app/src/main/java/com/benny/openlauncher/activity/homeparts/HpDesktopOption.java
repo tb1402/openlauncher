@@ -1,5 +1,6 @@
 package com.benny.openlauncher.activity.homeparts;
 
+import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.Definitions;
 import com.benny.openlauncher.util.Tool;
 import com.benny.openlauncher.viewutil.DialogHelper;
+import com.benny.openlauncher.viewutil.WidgetHost;
 import com.benny.openlauncher.widget.CellContainer;
 import com.benny.openlauncher.widget.Desktop;
 import com.benny.openlauncher.widget.DesktopOptionView;
@@ -71,12 +73,12 @@ public class HpDesktopOption implements DesktopOptionView.DesktopOptionViewListe
     public void configureWidget(Intent data) {
         Bundle extras = data.getExtras();
         int appWidgetId = extras.getInt("appWidgetId", -1);
-        AppWidgetProviderInfo appWidgetInfo = _homeActivity._appWidgetManager.getAppWidgetInfo(appWidgetId);
+        AppWidgetProviderInfo appWidgetInfo = HomeActivity._appWidgetManager.getAppWidgetInfo(appWidgetId);
         if (appWidgetInfo.configure != null) {
             Intent intent = new Intent("android.appwidget.action.APPWIDGET_CONFIGURE");
             intent.setComponent(appWidgetInfo.configure);
             intent.putExtra("appWidgetId", appWidgetId);
-            _homeActivity.startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
+            HomeActivity._appWidgetHost.startAppWidgetConfigureActivityForResult(_homeActivity,appWidgetId,0, REQUEST_CREATE_APPWIDGET,null);
         } else {
             createWidget(data);
         }

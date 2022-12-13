@@ -8,6 +8,7 @@ import android.util.Log;
 import com.benny.openlauncher.util.AdbConnectionManager;
 import com.benny.openlauncher.util.AppSettings;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

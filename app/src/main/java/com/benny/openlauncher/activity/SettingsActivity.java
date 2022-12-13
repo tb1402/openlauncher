@@ -16,7 +16,6 @@ import com.benny.openlauncher.manager.Setup;
 import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.BackupHelper;
 import com.benny.openlauncher.util.Definitions;
-import com.nononsenseapps.filepicker.Utils;
 
 import net.gsantner.opoc.util.ContextUtils;
 
@@ -74,14 +73,14 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Setup.dataManager().close();
-            List<Uri> files = Utils.getSelectedFilesFromResult(data);
+            //List<Uri> files = Utils.getSelectedFilesFromResult(data);
             switch (requestCode) {
                 case Definitions.INTENT_BACKUP:
                     BackupHelper.backupConfig(this, data.getData());
                     Setup.dataManager().open();
                     break;
                 case Definitions.INTENT_RESTORE:
-                    BackupHelper.restoreConfig(this, Utils.getFileForUri(files.get(0)).toString());
+                    BackupHelper.restoreConfig(this, data.getData());
                     System.exit(0);
                     break;
             }
