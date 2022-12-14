@@ -4,7 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 
 import com.benny.openlauncher.AppObject;
 import com.benny.openlauncher.R;
@@ -299,6 +300,26 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
 
     public boolean arePagesEnabled() {
         return !_prefApp.getBoolean(_context.getString(R.string.pref_key__disable_pages), false);
+    }
+
+    public boolean isWifiToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_wifi), false);
+    }
+
+    public boolean isBluetoothToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_bt), false);
+    }
+
+    public boolean isAirplaneModeToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_airplane_mode), false);
+    }
+
+    public boolean isLocationToggleLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_toggles_location), false);
+    }
+
+    public boolean isNotificationPanelLocked() {
+        return _prefApp.getBoolean(_context.getString(R.string.pref_key__lock_notification_panel), false);
     }
 
     // internal preferences below here

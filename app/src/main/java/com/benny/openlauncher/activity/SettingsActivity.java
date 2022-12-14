@@ -3,11 +3,11 @@ package com.benny.openlauncher.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.fragment.SettingsBaseFragment;
@@ -16,7 +16,6 @@ import com.benny.openlauncher.manager.Setup;
 import com.benny.openlauncher.util.AppSettings;
 import com.benny.openlauncher.util.BackupHelper;
 import com.benny.openlauncher.util.Definitions;
-import com.nononsenseapps.filepicker.Utils;
 
 import net.gsantner.opoc.util.ContextUtils;
 
@@ -25,11 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SettingsActivity extends ColorActivity implements SettingsBaseFragment.OnPreferenceStartFragmentCallback {
-    @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     public void onCreate(Bundle b) {
@@ -47,7 +42,7 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
         contextUtils.setAppLanguage(_appSettings.getLanguage());
 
         setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
+        toolbar=findViewById(R.id.toolbar);
 
         toolbar.setTitle(R.string.pref_title__settings);
         setSupportActionBar(toolbar);
@@ -78,14 +73,14 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Setup.dataManager().close();
-            List<Uri> files = Utils.getSelectedFilesFromResult(data);
+            //List<Uri> files = Utils.getSelectedFilesFromResult(data);
             switch (requestCode) {
                 case Definitions.INTENT_BACKUP:
-                    BackupHelper.backupConfig(this, new File(Utils.getFileForUri(files.get(0)).getAbsolutePath() + "/openlauncher_" + new SimpleDateFormat("yyyyMMdd'T'HHmmss").format(new Date()) + ".zip").toString());
+                    BackupHelper.backupConfig(this, data.getData());
                     Setup.dataManager().open();
                     break;
                 case Definitions.INTENT_RESTORE:
-                    BackupHelper.restoreConfig(this, Utils.getFileForUri(files.get(0)).toString());
+                    BackupHelper.restoreConfig(this, data.getData());
                     System.exit(0);
                     break;
             }

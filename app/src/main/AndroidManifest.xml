@@ -3,15 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.benny.openlauncher">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>-->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.STATUS_BAR" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.BIND_APPWIDGET" />
 
     <application
         android:name="com.benny.openlauncher.AppObject"
@@ -33,6 +46,7 @@
         <activity
             android:name="com.benny.openlauncher.activity.OnBoardActivity"
             android:clearTaskOnLaunch="true"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/IntroTheme">
             <intent-filter>
@@ -43,6 +57,7 @@
         <activity
             android:name="com.benny.openlauncher.activity.HomeActivity"
             android:clearTaskOnLaunch="true"
+            android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:stateNotNeeded="true"
@@ -86,21 +101,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.benny.openlauncher.activity.SettingsActivity" />
         </activity>
-        <activity
+        <!--<activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
             android:label="@string/app_name"
-            android:theme="@style/FilePickerTheme">
+            android:theme="@style/FilePickerTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity>-->
         <activity
             android:name="com.benny.openlauncher.activity.AddShortcutActivity"
             android:autoRemoveFromRecents="true"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/FilePickerTheme">
+            android:theme="@style/NormalActivity.Light">
             <intent-filter>
                 <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT" />
             </intent-filter>
@@ -108,6 +125,7 @@
 
         <receiver
             android:name="com.benny.openlauncher.receivers.DeviceAdminReceiver"
+            android:exported="true"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
@@ -118,6 +136,7 @@
         </receiver>
         <receiver
             android:name="com.benny.openlauncher.receivers.ShortcutReceiver"
+            android:exported="true"
             android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
@@ -127,6 +146,7 @@
         <service
             android:name="com.benny.openlauncher.notifications.NotificationListener"
             android:enabled="true"
+            android:exported="true"
             android:label="@string/icon_badge_service_title"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
@@ -135,7 +155,7 @@
         </service>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -143,6 +163,20 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <service
+            android:name=".util.AccessibilityService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility" />
+        </service>
 
     </application>
 

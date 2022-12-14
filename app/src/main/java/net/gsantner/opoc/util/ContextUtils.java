@@ -43,19 +43,21 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.RawRes;
-import android.support.annotation.StringRes;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.app.ActivityManagerCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.text.TextUtilsCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
+import androidx.annotation.StringRes;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import androidx.core.app.ActivityManagerCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.text.TextUtilsCompat;
+import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
+
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.SpannableString;
@@ -447,7 +449,9 @@ public class ContextUtils {
      */
     public void restartApp(Class classToStart) {
         Intent intent = new Intent(_context, classToStart);
-        PendingIntent pendi = PendingIntent.getActivity(_context, 555, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendi = PendingIntent.getActivity(_context, 555, intent,
+                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE :
+                        PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
         if (_context instanceof Activity) {
             ((Activity) _context).finish();

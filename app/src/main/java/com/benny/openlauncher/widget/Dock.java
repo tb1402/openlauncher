@@ -2,7 +2,7 @@ package com.benny.openlauncher.widget;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -199,7 +199,6 @@ public final class Dock extends CellContainer implements DesktopCallback {
 
     private Boolean isDockShowLabel() {
         boolean b = Setup.appSettings().getDockShowLabel();
-        Boolean ret = new Boolean(b);
-        return ret;
+        return Boolean.valueOf(b);
     }
 }

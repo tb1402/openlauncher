@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.util.AppSettings;
@@ -27,10 +27,8 @@ public abstract class ColorActivity extends AppCompatActivity {
             setTheme(R.style.NormalActivity_Black);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(dark(_appSettings.getPrimaryColor(), 0.8));
-            getWindow().setNavigationBarColor(_appSettings.getPrimaryColor());
-        }
+        getWindow().setStatusBarColor(dark(_appSettings.getPrimaryColor(), 0.8));
+        getWindow().setNavigationBarColor(_appSettings.getPrimaryColor());
 
         super.onCreate(savedInstanceState);
     }

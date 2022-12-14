@@ -1,8 +1,8 @@
 package com.benny.openlauncher.widget;
 
 import android.content.Context;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.PreferenceViewHolder;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -26,5 +26,10 @@ public class ColorPreferenceCategory extends PreferenceCategory {
         super.onBindViewHolder(holder);
         TextView titleView = (TextView) holder.findViewById(android.R.id.title);
         titleView.setTextColor(AppSettings.get().getPrimaryColor());
+
+        //increase max lines for summary
+        TextView summary=(TextView)holder.findViewById(android.R.id.summary);
+        summary.setSingleLine(false);
+        summary.setMaxLines(10);
     }
 }

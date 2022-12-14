@@ -49,6 +49,39 @@
         android:summary="@string/pref_behaviour__summary_allow_shortcuts_widgets"
         android:title="@string/pref_behaviour__title_allow_shortcuts_widgets" />
 
+    <com.benny.openlauncher.widget.ColorPreferenceCategory
+        android:summary="@string/pref_lock_toggles__category_summary"
+        android:title="@string/pref_lock_toggles__category_title">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_toggles_wifi"
+            android:title="@string/pref_lock_toggles__title_wifi" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_toggles_bt"
+            android:title="@string/pref_lock_toggles__title_bt" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_toggles_location"
+            android:title="@string/pref_lock_toggles__title_location" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_toggles_airplane_mode"
+            android:title="@string/pref_lock_toggles__title_airplane_mode" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_lock"
+            android:key="@string/pref_key__lock_notification_panel"
+            android:title="@string/pref_lock__title_notification_panel" />
+
+    </com.benny.openlauncher.widget.ColorPreferenceCategory>
+
 
     <com.benny.openlauncher.widget.ColorPreferenceCategory android:title="@string/pref_title__gestures">
 

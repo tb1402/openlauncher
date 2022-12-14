@@ -2,8 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Home.Light" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:navigationBarColor" tools:targetApi="21">@android:color/transparent</item>
-        <item name="android:colorPrimaryDark"  tools:targetApi="21">@android:color/transparent</item>
+        <item name="android:navigationBarColor" >@android:color/transparent</item>
+        <item name="android:colorPrimaryDark"  >@android:color/transparent</item>
         <item name="android:windowShowWallpaper">true</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -67,10 +67,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="FilePickerTheme" parent="NNF_BaseTheme">
+    <!--<style name="FilePickerTheme" parent="NNF_BaseTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
+    </style>-->
 
 </resources>

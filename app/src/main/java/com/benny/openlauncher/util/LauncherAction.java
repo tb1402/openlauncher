@@ -9,7 +9,8 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -23,6 +24,7 @@ import com.benny.openlauncher.viewutil.DialogHelper;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Handler;
 
 public class LauncherAction {
 

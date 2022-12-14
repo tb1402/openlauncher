@@ -9,10 +9,9 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.benny.openlauncher.activity.HomeActivity;
 import com.benny.openlauncher.interfaces.AppDeleteListener;
